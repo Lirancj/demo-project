@@ -1,0 +1,21 @@
+name: Scan Repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  scan-repo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Scanner
+        uses: your/scanner-action@v1 # Replace with the actual action name and version
+        with:
+          # Add any necessary configuration options for the scanner here
+
+      # You can add more steps here if needed, like notifications or reporting
