@@ -10,12 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Fetch all files
+      id: fetch-files
+      run: |
+        files=$(find . -type f | sed 's|./||' | grep -v "^\.git/")
+        echo "FILES=$files" >> $GITHUB_ENV
+        echo "::set-output name=files::$files"
 
-      - name: Run Scanner
-        uses: your/scanner-action@v1 # Replace with the actual action name and version
-        with:
-          # Add any necessary configuration options for the scanner here
-
-      # You can add more steps here if needed, like notifications or reporting
+    - name: Scan
+      uses: Lirancj/project@v1
+      with:
+        files: ${{ steps.fetch-files.outputs.files }}
