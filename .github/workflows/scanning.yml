@@ -21,6 +21,6 @@ jobs:
         echo "::set-output name=files::$files"
 
     - name: Scan
-      uses: Lirancj/project
+      uses: Lirancj/project@v1
       with:
         files: ${{ steps.fetch-files.outputs.files }}
