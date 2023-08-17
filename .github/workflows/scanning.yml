@@ -27,3 +27,5 @@ jobs:
       uses: Lirancj/project@v1
       with:
         files: ${{ steps.fetch-files.outputs.files }}
+      env:
+        GITHUB_WORKSPACE: ${{ github.workspace }}
