@@ -1,6 +1,7 @@
 name: Scan Repository
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -12,10 +13,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Dirty test
-      run: |
-        python -c "import os; print(os.listdir(), os.getcwd())"
 
     - name: Fetch all files
       id: fetch-files
