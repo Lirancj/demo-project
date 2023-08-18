@@ -17,7 +17,7 @@ jobs:
     - name: Fetch all files
       id: fetch-files
       run: |
-        all_files=$(find . -type d -name '.*' -prune -o ! -name '.*' -type f -print | tr '\n' ' ')
+        all_files=$(find . -type f | grep -v '/\.' | tr '\n' ' ')
         echo "Files: $all_files"
         echo "::set-output name=files::$all_files"
 
