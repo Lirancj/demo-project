@@ -32,5 +32,5 @@ jobs:
     - name: Revert Push on Scan Failure
       if: failure()
       run: |
-        prev_commit=$(git rev-parse HEAD~1)
-        git push origin +$prev_commit:refs/heads/${{ github.ref }}
+        git revert HEAD --no-edit
+        git push origin main
