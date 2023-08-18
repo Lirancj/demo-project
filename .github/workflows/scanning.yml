@@ -27,3 +27,10 @@ jobs:
         files: ${{ steps.fetch-files.outputs.files }}
       env:
         GITHUB_WORKSPACE: ${{ github.workspace }}
+      id: scan_step
+
+    - name: Revert Push on Scan Failure
+      if: failure()
+      run: |
+        prev_commit=$(git rev-parse HEAD~1)
+        git push origin +$prev_commit:refs/heads/${{ github.ref }}
