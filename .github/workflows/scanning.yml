@@ -30,11 +30,12 @@ jobs:
       id: scan_step
 
     - name: Revert Push on Scan Failure
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_BOT_TOKEN }}
       if: failure()
       run: |
         git config --global user.name "Leon Detector Bot"
         git config --global user.email "actions@github.com"
         git revert HEAD --no-edit
         git push origin main
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACTIOsNS_BOT_TOKEN }}
+
