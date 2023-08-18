@@ -17,12 +17,9 @@ jobs:
     - name: Fetch all files
       id: fetch-files
       run: |
-        base_dir=$(pwd)
-        files=$(find . -type f | sed "s|^\./|$base_dir/|" | grep -v "^$base_dir/\.git/")
-        files_json=$(echo "$files" | jq -R -s -c 'split("\n")[:-1]')
-        echo "FILES_JSON=$files_json" >> $GITHUB_ENV
-        echo "::set-output name=files::$files_json"
-
+        all_files=$(find . -type f | tr '\n' ' ')
+        echo "Files: $all_files"
+        echo "::set-output name=files::$all_files"
 
     - name: Scan
       uses: Lirancj/project@v1
