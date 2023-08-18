@@ -37,4 +37,4 @@ jobs:
         git revert HEAD --no-edit
         git push origin main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_BOT_TOKEN }}
